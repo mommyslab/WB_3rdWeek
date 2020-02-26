@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        if (nums.size()==0)
+            return -1;
+        int begin=0;
+        int end=nums.size()-1;
+        int mid=(begin+end)/2;
+        while(begin<end){
+            mid=(begin+end)/2;
+            if(mid<0 || mid==nums.size())
+                return -1;
+            if(nums[mid]==target)
+                return mid;
+            else if(nums[mid]>target)
+                end=mid-1;
+            else 
+                begin=mid+1;
+        }
+        if (mid >= 0 && mid < nums.size()){
+            if (nums[mid] == target)
+                return mid;
+        }
+        // Weird error here need to check numbers below and above by one
+        int n = mid + 1;
+        if (n >= 0 && n < nums.size()){
+            if (nums[n] == target)
+                return n;
+        }
+        n = mid - 1;
+        if (n >= 0 && n < nums.size()){
+            if (nums[n] == target)
+                return n;
+        }
+        return -1;
+    }
+ 
+};
